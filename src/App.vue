@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- this is using the component SmallUserProfile and its creating a loop that will display the data from app.vue, and is also-->
+    <!-- sending down the prop that SmallUserProfile is expecting so that SUP.vue can take the data and display -->
+    <small-user-profile v-for="user in users" :key="user[`id`]" :user="user">
+    </small-user-profile>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SmallUserProfile from "@/components/SmallUserProfile.vue";
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      users: [
+        {
+          name: `Lorna`,
+          age: 23,
+          is_premium: true,
+          id: 3698,
+        },
+        {
+          name: `Robin`,
+          age: 16,
+          is_premium: false,
+          id: 1982,
+        },
+        { name: `Sylvia`, age: 42, is_premium: true, id: 1276 },
+      ],
+    };
+  },
+
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    SmallUserProfile,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
